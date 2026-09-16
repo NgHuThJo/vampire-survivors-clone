@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bmoy7wax5xqjv"]
+
+[ext_resource type="Script" uid="uid://bjpsh4ocxatyi" path="res://UI/Settings/Controls.cs" id="1_c5wmm"]
+[ext_resource type="PackedScene" uid="uid://trsdhwo1p8kn" path="res://UI/Settings/rebind_button.tscn" id="2_bvumh"]
+
+[node name="Controls" type="PanelContainer" unique_id=1315531365]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c5wmm")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=787224350]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1658545117]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=939117270]
+layout_mode = 2
+text = "Click on a button to reassign its action key"
+
+[node name="HBoxContainer5" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=131405288]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5" unique_id=52882611]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer" unique_id=1908658277]
+layout_mode = 2
+text = "Move Left"
+
+[node name="RebindButton" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer" unique_id=1627722268 node_paths=PackedStringArray("CurrentKeyText") instance=ExtResource("2_bvumh")]
+layout_mode = 2
+CurrentKeyText = NodePath("../Label")
+Action = "move_left"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1911504268]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer2" unique_id=1781698235]
+layout_mode = 2
+text = "Move Right"
+
+[node name="RebindButton" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer2" unique_id=2115359924 node_paths=PackedStringArray("CurrentKeyText") instance=ExtResource("2_bvumh")]
+layout_mode = 2
+CurrentKeyText = NodePath("../Label")
+Action = "move_right"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5" unique_id=717412285]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer3" unique_id=106588109]
+layout_mode = 2
+text = "Move Up"
+
+[node name="RebindButton" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer3" unique_id=2013816907 node_paths=PackedStringArray("CurrentKeyText") instance=ExtResource("2_bvumh")]
+layout_mode = 2
+CurrentKeyText = NodePath("../Label")
+Action = "move_up"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5" unique_id=369055898]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer4" unique_id=805643801]
+layout_mode = 2
+text = "Move Down"
+
+[node name="RebindButton" parent="MarginContainer/VBoxContainer/HBoxContainer5/HBoxContainer4" unique_id=132949915 node_paths=PackedStringArray("CurrentKeyText") instance=ExtResource("2_bvumh")]
+layout_mode = 2
+CurrentKeyText = NodePath("../Label")
+Action = "move_down"

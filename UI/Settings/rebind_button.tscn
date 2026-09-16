@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://trsdhwo1p8kn"]
+
+[ext_resource type="Script" uid="uid://b0lcjaslwh8dh" path="res://UI/Settings/RebindButton.cs" id="1_a0vjj"]
+
+[node name="RebindButton" type="Button" unique_id=1627722268]
+toggle_mode = true
+text = " Placeholder text"
+script = ExtResource("1_a0vjj")

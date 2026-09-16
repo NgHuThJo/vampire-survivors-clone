@@ -1,7 +1,7 @@
-using Game.Resources.Movement;
+using Game.Resources.Combat.Movement;
 using Godot;
 
-namespace Game.Common.Components.Combat;
+namespace Game.Common.Components.Combat.Movement;
 
 public partial class MovementComponent : Node
 {

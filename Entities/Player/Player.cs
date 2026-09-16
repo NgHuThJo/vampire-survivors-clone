@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Game.Common.Components;
 using Game.Common.Components.CollisionDetection.Hurtbox;
 using Game.Common.Components.Combat.Health;
-using Game.Utilities.Autoloads;
+using Game.Common.Components.Combat.Movement;
 using Game.World.Maps;
 using Godot;
 
@@ -24,20 +23,11 @@ public partial class Player : CharacterBody2D
     public HurtboxComponent Hurtbox { get; private set; }
 
     [Export]
-    public Node2D DirectionRays { get; private set; }
-
-    [Export]
-    public Node2D NextDirectionDetector { get; private set; }
-
-    [Export]
     public Map Map { get; private set; }
 
     [Export]
     public PlayerData Data { get; private set; }
     public PlayerStateMachine StateMachine { get; init; } = new();
-    public Vector2 NextMovementDirection { get; set; } = Vector2.Zero;
-    public Vector2 CurrentMovementDirection { get; set; } = Vector2.Zero;
-    public float RayLength { get; init; } = 24f;
 
     public Dictionary<Vector2, float> RotationMap { get; init; } =
         new()
@@ -71,35 +61,7 @@ public partial class Player : CharacterBody2D
 
     public void Initialize()
     {
-        Health.Initialize(Data.Combat.HealthData);
+        Health.Initialize(Data.HealthData);
         Movement.Initialize(Data.MovementData);
-    }
-
-    public bool CanMoveInDirection(Vector2 direction)
-    {
-        if (direction == Vector2.Zero)
-        {
-            return false;
-        }
-
-        foreach (var ray in DirectionRays.GetChildren().Cast<RayCast2D>())
-        {
-            if (ray.IsColliding())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public void TurnArrow(Vector2 direction)
-    {
-        if (direction == Vector2.Zero)
-        {
-            return;
-        }
-
-        NextDirectionDetector.RotationDegrees = RotationMap[direction];
     }
 }

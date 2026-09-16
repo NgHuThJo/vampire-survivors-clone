@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://b04i2kmh4mhd3"]
 
+[ext_resource type="Script" uid="uid://y580b06i8r3k" path="res://UI/Settings/MusicSlider.cs" id="1_q7d6u"]
 
 [node name="HorizontalSlider" type="HBoxContainer" unique_id=172057590 node_paths=PackedStringArray("Label", "Slider")]
+script = ExtResource("1_q7d6u")
 Label = NodePath("Label")
 Slider = NodePath("Slider")
-MaxValue = 1.0
-Step = 0.001
-CurrentValue = 1.0
 
 [node name="Label" type="Label" parent="." unique_id=913166287]
 custom_minimum_size = Vector2(100, 0)

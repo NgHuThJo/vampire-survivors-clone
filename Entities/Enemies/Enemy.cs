@@ -1,9 +1,7 @@
-using Game.Common.Components;
 using Game.Common.Components.CollisionDetection.Hurtbox;
 using Game.Common.Components.Combat.Health;
-using Game.Common.Particles;
+using Game.Common.Components.Combat.Movement;
 using Game.Utilities.Autoloads;
-using Game.Utilities.Loaded;
 using Godot;
 
 namespace Game.Entities.Enemies;

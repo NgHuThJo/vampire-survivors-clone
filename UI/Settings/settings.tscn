@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmqxraj2ysh1s" path="res://UI/Settings/Settings.cs" id="1_6ukun"]
 [ext_resource type="PackedScene" uid="uid://8s7yyshmfar3" path="res://UI/Settings/sound_tab.tscn" id="2_u23uq"]
+[ext_resource type="PackedScene" uid="uid://bmoy7wax5xqjv" path="res://UI/Settings/controls.tscn" id="3_6ukun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuh4y"]
 bg_color = Color(0.15686275, 0.5254902, 1, 1)
@@ -33,3 +34,8 @@ current_tab = 0
 
 [node name="SoundTab" parent="MarginContainer/TabContainer" unique_id=1955786065 instance=ExtResource("2_u23uq")]
 layout_mode = 2
+
+[node name="Controls" parent="MarginContainer/TabContainer" unique_id=1315531365 instance=ExtResource("3_6ukun")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1

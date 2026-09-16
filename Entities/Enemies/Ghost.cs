@@ -1,4 +1,4 @@
-using Game.Common.Components;
+using Game.Common.Components.Combat.Movement;
 using Godot;
 
 namespace Game.Entities.Enemies;

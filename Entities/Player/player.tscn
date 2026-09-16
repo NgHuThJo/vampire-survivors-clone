@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b2kdg8lqxldi5"]
 
 [ext_resource type="Script" uid="uid://jej5dx1xhtp" path="res://Entities/Player/Player.cs" id="1_3uyv8"]
-[ext_resource type="Script" uid="uid://jhelclesmlqh" path="res://Resources/Health/HealthData.cs" id="2_lub02"]
-[ext_resource type="Texture2D" uid="uid://ddf2bou4l36ct" path="res://Assets/visual/PacManAssets-PacMan.png" id="3_5c2io"]
-[ext_resource type="Script" uid="uid://cvs6jj0ttra88" path="res://Resources/Movement/MovementData.cs" id="3_x1y6q"]
+[ext_resource type="Script" uid="uid://jhelclesmlqh" path="res://Resources/Combat/Health/HealthData.cs" id="2_lub02"]
+[ext_resource type="Script" uid="uid://cvs6jj0ttra88" path="res://Resources/Combat/Movement/MovementData.cs" id="3_x1y6q"]
 [ext_resource type="Script" uid="uid://b3pxvwxg0u4mf" path="res://Entities/Player/PlayerData.cs" id="4_x1y6q"]
-[ext_resource type="PackedScene" uid="uid://b2spogtcacfgt" path="res://Common/Components/Health/health_component.tscn" id="6_ap3xn"]
+[ext_resource type="Texture2D" uid="uid://dfj36a6rdjejn" path="res://Entities/Player/player.png" id="5_x1y6q"]
+[ext_resource type="PackedScene" uid="uid://b2spogtcacfgt" path="res://Common/Components/Combat/Health/health_component.tscn" id="6_ap3xn"]
 [ext_resource type="PackedScene" uid="uid://jhbg5d3errnr" path="res://Common/Components/CollisionDetection/Hurtbox/hurtbox_component.tscn" id="6_iplt1"]
-[ext_resource type="PackedScene" uid="uid://bdwy5b0fyeqoh" path="res://Common/Components/movement_component.tscn" id="7_iplt1"]
+[ext_resource type="PackedScene" uid="uid://bdwy5b0fyeqoh" path="res://Common/Components/Combat/Movement/movement_component.tscn" id="7_iplt1"]
 [ext_resource type="PackedScene" uid="uid://640n67d00vm7" path="res://Entities/Player/player_controller.tscn" id="7_owvpp"]
 [ext_resource type="PackedScene" uid="uid://c8ouknimlrhi0" path="res://Entities/Player/arrow.tscn" id="10_x1y6q"]
 
@@ -18,17 +18,13 @@ metadata/_custom_type_script = "uid://jhelclesmlqh"
 
 [sub_resource type="Resource" id="Resource_ebkce"]
 script = ExtResource("3_x1y6q")
-Speed = 100.0
+Speed = 300.0
 metadata/_custom_type_script = "uid://cvs6jj0ttra88"
 
 [sub_resource type="Resource" id="Resource_xr8lj"]
 script = ExtResource("4_x1y6q")
 HealthData = SubResource("Resource_w71yf")
 MovementData = SubResource("Resource_ebkce")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyppc"]
-atlas = ExtResource("3_5c2io")
-region = Rect2(0, 0, 128, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7bsh"]
 size = Vector2(16, 16)
@@ -285,23 +281,22 @@ graph_offset = Vector2(-156.4086, 22.600815)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgnfr"]
 size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=1228520695 node_paths=PackedStringArray("Controller", "Health", "Movement", "Hurtbox", "DirectionRays", "NextDirectionDetector")]
-scale = Vector2(0.75, 0.75)
+[node name="Player" type="CharacterBody2D" unique_id=1228520695 node_paths=PackedStringArray("Controller", "Health", "Movement", "Hurtbox")]
+position = Vector2(179, 113)
 collision_mask = 6
 script = ExtResource("1_3uyv8")
 Controller = NodePath("PlayerController")
 Health = NodePath("HealthComponent")
 Movement = NodePath("MovementComponent")
 Hurtbox = NodePath("HurtboxComponent")
-DirectionRays = NodePath("NextDirectionDetector/DirectionRays")
-NextDirectionDetector = NodePath("NextDirectionDetector")
 Data = SubResource("Resource_xr8lj")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1900190858]
-texture = SubResource("AtlasTexture_vyppc")
+texture_filter = 1
+texture = ExtResource("5_x1y6q")
 offset = Vector2(-1, 0)
 hframes = 4
-vframes = 3
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=358217234]
 shape = SubResource("RectangleShape2D_t7bsh")

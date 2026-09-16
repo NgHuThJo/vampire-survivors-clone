@@ -1,5 +1,5 @@
 using Game.Resources.Combat.Health;
-using Game.Resources.Movement;
+using Game.Resources.Combat.Movement;
 using Godot;
 
 namespace Game.Entities.Player;

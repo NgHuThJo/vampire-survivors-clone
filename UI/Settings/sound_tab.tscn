@@ -30,15 +30,24 @@ layout_mode = 2
 LabelText = "Master"
 BusName = "Master"
 ConfigStringKey = "Master"
+MaxValue = 1.0
+Step = 0.01
+StartValue = 1.0
 
 [node name="Music" parent="VBoxContainer" unique_id=1506566140 instance=ExtResource("1_q0cld")]
 layout_mode = 2
 LabelText = "Music"
 BusName = "Music"
 ConfigStringKey = "Music"
+MaxValue = 1.0
+Step = 0.01
+StartValue = 1.0
 
 [node name="Sfx" parent="VBoxContainer" unique_id=1220604822 instance=ExtResource("1_q0cld")]
 layout_mode = 2
 LabelText = "Sfx"
 BusName = "Sfx"
 ConfigStringKey = "Sfx"
+MaxValue = 1.0
+Step = 0.01
+StartValue = 1.0

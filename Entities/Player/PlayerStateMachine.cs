@@ -43,7 +43,6 @@ public class PlayerIdleState(Player player, PlayerStateMachine stateMachine)
 
         if (direction != Vector2.Zero)
         {
-            Player.CurrentMovementDirection = direction;
             StateMachine.ChangeState(new PlayerMovingState(Player, StateMachine));
         }
     }
@@ -59,24 +58,14 @@ public class PlayerMovingState(Player player, PlayerStateMachine stateMachine)
             return;
         }
 
-        if (Player.CanMoveInDirection(Player.NextMovementDirection))
-        {
-            Player.CurrentMovementDirection = Player.NextMovementDirection;
-        }
+        var currentDirection = Player.Controller.MovementDirection;
 
-        if (Player.Controller.MovementDirection != Vector2.Zero)
-        {
-            Player.NextMovementDirection = Player.Controller.MovementDirection;
-            Player.TurnArrow(Player.NextMovementDirection);
-        }
-
-        Player.Movement.ApplyVelocity(Player.CurrentMovementDirection);
+        Player.Movement.ApplyVelocity(currentDirection);
 
         Player.MoveAndSlide();
 
         if (Player.Velocity == Vector2.Zero)
         {
-            Player.CurrentMovementDirection = Vector2.Zero;
             StateMachine.ChangeState(new PlayerIdleState(Player, StateMachine));
             return;
         }

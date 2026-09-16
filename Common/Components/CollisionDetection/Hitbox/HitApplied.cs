@@ -1,5 +1,5 @@
 using Game.Common.GameEvents;
-using Game.Resources.Attack;
+using Game.Resources.Combat.Attack;
 
 namespace Game.Common.Components.CollisionDetection.Hitbox;
 

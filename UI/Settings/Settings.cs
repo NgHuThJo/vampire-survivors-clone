@@ -8,8 +8,7 @@ public partial class Settings : UIScreen
 {
     public override void _ShortcutInput(InputEvent @event)
     {
-        GD.Print("in gui update, ", @event.IsActionPressed("Escape"));
-        if (@event.IsActionPressed("Escape"))
+        if (@event.IsActionPressed("escape"))
         {
             UIManager.Instance.Pop();
         }

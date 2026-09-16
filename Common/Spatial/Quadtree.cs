@@ -67,7 +67,7 @@ public class QuadTree<T>(int capacity, int maxDepth, Rect2 bounds, Func<T, Vecto
         var halfHeight = Bounds.Size.Y / 2;
         var nextDepth = Depth + 1;
 
-        Children.AddRange(
+        Children.AddRange([
             new QuadTree<T>(
                 Capacity,
                 MaxDepth,
@@ -107,8 +107,8 @@ public class QuadTree<T>(int capacity, int maxDepth, Rect2 bounds, Func<T, Vecto
                 ),
                 GetPosition,
                 nextDepth
-            )
-        );
+            ),
+        ]);
 
         foreach (var item in Positions)
         {

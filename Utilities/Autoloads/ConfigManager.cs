@@ -59,7 +59,8 @@ public partial class ConfigManager : Node
 
         if (file is null)
         {
-            GD.PushError("Failed to open config file for reading");
+            GD.PushError("No config file found to read");
+            SaveConfig();
             return;
         }
 

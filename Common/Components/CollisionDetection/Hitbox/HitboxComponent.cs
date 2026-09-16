@@ -1,6 +1,6 @@
 using System;
 using Game.Common.Components.CollisionDetection.Hurtbox;
-using Game.Resources.Attack;
+using Game.Resources.Combat.Attack;
 using Godot;
 
 namespace Game.Common.Components.CollisionDetection.Hitbox;
