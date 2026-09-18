@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dccxoapdar0n3"]
 
-[ext_resource type="Script" uid="uid://ry5lu8n0oq10" path="res://Common/Components/HitboxComponent.cs" id="1_2qs5f"]
+[ext_resource type="Script" uid="uid://ba7j511bvxt0y" path="res://Common/Components/CollisionDetection/Hitbox/HitboxComponent.cs" id="1_8sygx"]
 
 [node name="HitboxComponent" type="Area2D" unique_id=1065271935]
-script = ExtResource("1_2qs5f")
+script = ExtResource("1_8sygx")

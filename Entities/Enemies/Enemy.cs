@@ -15,6 +15,9 @@ public partial class Enemy : CharacterBody2D
     public HealthComponent Health { get; private set; }
 
     [Export]
+    public Player.Player Player { get; private set; }
+
+    [Export]
     public HurtboxComponent Hurtbox { get; private set; }
 
     [Export]
@@ -27,6 +30,13 @@ public partial class Enemy : CharacterBody2D
         Movement.Initialize(Data.MovementData);
 
         Health.NoHealthLeft += OnNoHealthLeft;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        var direction = GlobalPosition.DirectionTo(Player.GlobalPosition);
+        Movement.ApplyVelocity(direction);
+        MoveAndSlide();
     }
 
     public override void _ExitTree()
@@ -47,7 +57,7 @@ public partial class Enemy : CharacterBody2D
         // AudioManager.Instance.PlaySfx(LoadedSfx.Explosion);
 
         QueueFree();
-        var context = new EnemyDied { Points = Data.Points };
-        EventBus.Instance.EnemyDied.Invoke(context);
+        // var context = new EnemyDied { Points = Data.Points };
+        // EventBus.Instance.EnemyDied.Invoke(context);
     }
 }

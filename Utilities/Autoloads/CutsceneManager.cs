@@ -21,7 +21,6 @@ public partial class CutsceneManager : Node
         }
         finally
         {
-            GD.Print("player start");
             InputManager.Instance.Pop();
         }
     }

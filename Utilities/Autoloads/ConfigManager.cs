@@ -17,6 +17,7 @@ public partial class ConfigManager : Node
     {
         Instance = this;
         LoadConfig();
+        LoadKeyBindings();
     }
 
     public void SaveConfig()
@@ -77,5 +78,34 @@ public partial class ConfigManager : Node
         {
             GD.PushError($"Failed to to load config data: {ex.Message}");
         }
+    }
+
+    public void LoadKeyBindings()
+    {
+        foreach (var (key, value) in GameSettings.KeysMap)
+        {
+            if (InputMap.HasAction(key))
+            {
+                GD.Print(key, ", ", value);
+                var input = KeyBindToInputEventKey(value);
+
+                InputMap.ActionEraseEvents(key);
+                InputMap.ActionAddEvent(key, input);
+            }
+        }
+    }
+
+    public InputEventKey KeyBindToInputEventKey(KeyBind key)
+    {
+        var input = new InputEventKey { Keycode = key.KeyCode };
+
+        return input;
+    }
+
+    public KeyBind InputEventKeytoKeyBind(InputEventKey input)
+    {
+        var keyBind = new KeyBind { KeyCode = input.Keycode };
+
+        return keyBind;
     }
 }

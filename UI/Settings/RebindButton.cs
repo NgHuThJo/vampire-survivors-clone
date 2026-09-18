@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Game.Utilities.Autoloads;
 using Godot;
@@ -16,7 +15,6 @@ public partial class RebindButton : Button
     public override void _Ready()
     {
         SetProcessUnhandledKeyInput(false);
-        InitializeKeyBinding();
         DisplayCurrentKey();
     }
 
@@ -47,43 +45,45 @@ public partial class RebindButton : Button
         }
     }
 
-    public void InitializeKeyBinding()
-    {
-        foreach (var key in ConfigManager.Instance.GameSettings.KeysMap)
-        {
-            GD.Print(key.Key, ", ", key.Value);
-        }
-
-        GD.Print(InputMap.ActionGetEvents(Action));
-
-        var inputEventKey = new InputEventKey();
-
-        if (ConfigManager.Instance.GameSettings.KeysMap.TryGetValue(Action, out var value))
-        {
-            inputEventKey.Keycode = value.KeyCode;
-        }
-        else
-        {
-            inputEventKey.Keycode = InputMap
-                .ActionGetEvents(Action)
-                .Cast<InputEventKey>()
-                .ElementAt(0)
-                .Keycode;
-        }
-
-        Text = inputEventKey.AsTextKeyLabel();
-    }
-
     public void RemapActionTo(InputEvent @event)
     {
-        InputMap.ActionEraseEvents(Action);
-        InputMap.ActionAddEvent(Action, @event);
+        if (@event is InputEventKey inputEventKey)
+        {
+            foreach (var action in InputMap.GetActions())
+            {
+                if (InputMap.EventIsAction(inputEventKey, action))
+                {
+                    var oldEvent = InputMap.ActionGetEvents(Action).ElementAtOrDefault(0);
 
-        var inputEventKey = (InputEventKey)@event;
+                    InputMap.ActionEraseEvents(action);
+                    InputMap.ActionAddEvent(action, oldEvent);
 
-        var keyBinding = new KeyBind() { KeyCode = inputEventKey.Keycode };
+                    if (oldEvent is InputEventKey oldEventKey)
+                    {
+                        var binding = new KeyBind()
+                        {
+                            KeyCode = ConfigManager
+                                .Instance.InputEventKeytoKeyBind(oldEventKey)
+                                .KeyCode,
+                        };
 
-        ConfigManager.Instance.GameSettings.KeysMap[Action] = keyBinding;
+                        ConfigManager.Instance.GameSettings.KeysMap[action] = binding;
+                    }
+
+                    break;
+                }
+            }
+
+            InputMap.ActionEraseEvents(Action);
+            InputMap.ActionAddEvent(Action, inputEventKey);
+
+            var keyBinding = new KeyBind()
+            {
+                KeyCode = ConfigManager.Instance.InputEventKeytoKeyBind(inputEventKey).KeyCode,
+            };
+
+            ConfigManager.Instance.GameSettings.KeysMap[Action] = keyBinding;
+        }
     }
 
     public void DisplayCurrentKey()

@@ -8,8 +8,8 @@ public partial class PlayAnimationCutsceneEvent : CutsceneEvent
 {
     public override async Task Execute(CutsceneContext context)
     {
-        context.Level.AnimationPlayer.Play(context.Level.CurrentLevelAnimation);
+        // context.Level.AnimationPlayer.Play(context.Level.CurrentLevelAnimation);
 
-        await ToSignal(context.Level.AnimationPlayer, AnimationMixer.SignalName.AnimationFinished);
+        // await ToSignal(context.Level.AnimationPlayer, AnimationMixer.SignalName.AnimationFinished);
     }
 }

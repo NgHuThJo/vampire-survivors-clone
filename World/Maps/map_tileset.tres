@@ -1,6 +1,5 @@
 [gd_resource type="TileSet" format=3 uid="uid://yujgnhryffas"]
 
-[ext_resource type="Texture2D" uid="uid://dpxeupio0hfms" path="res://Assets/visual/PacManAssets_Map_TileSet.png" id="1_jpunj"]
 [ext_resource type="PackedScene" uid="uid://6tv3t8myj3c2" path="res://Entities/Items/small_coin.tscn" id="2_sahjb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_4xocj"]
@@ -16,7 +15,6 @@ tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 131072, 327680, 1, 
 tile_data = PackedInt32Array(0, 589824, 1, 1, 262144, 0, 2, 262144, 2, 3, 655360, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b661n"]
-texture = ExtResource("1_jpunj")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
