@@ -19,10 +19,16 @@ public partial class Spawner : Node2D
         Timer.Timeout += OnTimeout;
     }
 
+    public override void _ExitTree()
+    {
+        Timer.Timeout -= OnTimeout;
+    }
+
     public void OnTimeout()
     {
         var child = Entity.Instantiate<Enemy>();
 
+        AddChild(child);
         child.GlobalPosition = Path.GlobalPosition;
         child.GlobalRotation = Path.GlobalRotation;
     }
