@@ -14,7 +14,6 @@ public partial class Enemy : CharacterBody2D
     [Export]
     public HealthComponent Health { get; private set; }
 
-    [Export]
     public Player.Player Player { get; private set; }
 
     [Export]
@@ -42,6 +41,11 @@ public partial class Enemy : CharacterBody2D
     public override void _ExitTree()
     {
         Health.NoHealthLeft -= OnNoHealthLeft;
+    }
+
+    public void Initialize(Player.Player player)
+    {
+        Player = player;
     }
 
     public async void OnNoHealthLeft(NoHealthLeft noHealthLeft)

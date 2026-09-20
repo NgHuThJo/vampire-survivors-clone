@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AoeWeaponData" format=3 uid="uid://dwn5dfoferemg"]
+
+[ext_resource type="Script" uid="uid://gdj87tttkk63" path="res://Resources/Combat/Weapons/AoeWeaponData.cs" id="1_appc6"]
+
+[resource]
+script = ExtResource("1_appc6")
+Damage = 1.0
+Radius = 30.0
+Cooldown = 1.0
+metadata/_custom_type_script = "uid://gdj87tttkk63"
