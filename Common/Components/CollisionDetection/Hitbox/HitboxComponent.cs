@@ -8,6 +8,9 @@ namespace Game.Common.Components.CollisionDetection.Hitbox;
 public partial class HitboxComponent : Area2D
 {
     public event Action<HitApplied> HitApplied;
+
+    [Export]
+    public CollisionShape2D CollisionShape { get; private set; }
     public AttackData AttackData { get; set; }
 
     public override void _Ready()

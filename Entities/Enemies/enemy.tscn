@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://cclhecsoeewsh" path="res://Entities/Enemies/enemy_movement.tres" id="3_jk8g3"]
 [ext_resource type="Script" uid="uid://dki05byesg3ky" path="res://Entities/Enemies/EnemyData.cs" id="4_sawca"]
 [ext_resource type="PackedScene" uid="uid://dccxoapdar0n3" path="res://Common/Components/CollisionDetection/Hitbox/hitbox_component.tscn" id="7_ftopr"]
+[ext_resource type="Texture2D" uid="uid://cinqcvt4uw7ya" path="res://Assets/Visual/healthbar-border.png" id="10_ac7l1"]
+[ext_resource type="Texture2D" uid="uid://y4amjmperui7" path="res://Assets/Visual/healthbar.png" id="11_uc670"]
 
 [sub_resource type="Resource" id="Resource_egqyd"]
 script = ExtResource("2_sawca")
@@ -69,3 +71,14 @@ polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959159612]
 shape = SubResource("RectangleShape2D_ebkce")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1879856645]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=638769729]
+anchors_preset = -1
+offset_left = -32.0
+offset_top = -40.0
+offset_right = -32.0
+offset_bottom = -32.0
+texture_under = ExtResource("10_ac7l1")
+texture_progress = ExtResource("11_uc670")

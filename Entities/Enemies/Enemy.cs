@@ -1,3 +1,4 @@
+using Game.Common.Components;
 using Game.Common.Components.CollisionDetection.Hurtbox;
 using Game.Common.Components.Combat.Health;
 using Game.Common.Components.Combat.Movement;
@@ -6,7 +7,7 @@ using Godot;
 
 namespace Game.Entities.Enemies;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : CharacterBody2D, IDamageable
 {
     [Export]
     public MovementComponent Movement { get; private set; }
@@ -14,13 +15,15 @@ public partial class Enemy : CharacterBody2D
     [Export]
     public HealthComponent Health { get; private set; }
 
-    public Player.Player Player { get; private set; }
-
     [Export]
     public HurtboxComponent Hurtbox { get; private set; }
 
     [Export]
+    public TextureProgressBar HealthBar { get; private set; }
+
+    [Export]
     public EnemyData Data { get; set; }
+    public Player.Player Player { get; private set; }
 
     private bool HasDied { get; set; } = false;
 
@@ -46,6 +49,8 @@ public partial class Enemy : CharacterBody2D
     public void Initialize(Player.Player player)
     {
         Player = player;
+        HealthBar.MaxValue = Data.HealthData.MaxHealth;
+        HealthBar.Value = Data.HealthData.MaxHealth;
     }
 
     public async void OnNoHealthLeft(NoHealthLeft noHealthLeft)
@@ -63,5 +68,12 @@ public partial class Enemy : CharacterBody2D
         QueueFree();
         // var context = new EnemyDied { Points = Data.Points };
         // EventBus.Instance.EnemyDied.Invoke(context);
+    }
+
+    public void ReceiveDamage(IDamageContext context)
+    {
+        var damage = DamageManager.Instance.ApplyDamage(context);
+
+        Health.TakeDamage(damage);
     }
 }
