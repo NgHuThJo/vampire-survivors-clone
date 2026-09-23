@@ -20,6 +20,7 @@ curve = SubResource("Curve2D_ql50o")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1477969184]
 position = Vector2(-32, -32)
+rotates = false
 
 [node name="Timer" type="Timer" parent="." unique_id=572249020]
 autostart = true

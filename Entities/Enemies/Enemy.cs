@@ -51,6 +51,8 @@ public partial class Enemy : CharacterBody2D, IDamageable
         Player = player;
         HealthBar.MaxValue = Data.HealthData.MaxHealth;
         HealthBar.Value = Data.HealthData.MaxHealth;
+
+        GD.Print("Max health: ", HealthBar.MaxValue, ", Current health: ", HealthBar.Value);
     }
 
     public async void OnNoHealthLeft(NoHealthLeft noHealthLeft)
