@@ -6,5 +6,5 @@ namespace Game.Resources.Combat.Health;
 public partial class HealthData : Resource
 {
     [Export]
-    public float MaxHealth { get; set; }
+    public int MaxHealth { get; set; }
 }

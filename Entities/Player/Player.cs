@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using Game.Common.Components.CollisionDetection.Hurtbox;
 using Game.Common.Components.Combat.Health;
 using Game.Common.Components.Combat.Movement;
-using Game.World.Maps;
+using Game.Entities.Weapons;
 using Godot;
 
 namespace Game.Entities.Player;
@@ -12,6 +11,9 @@ public partial class Player : CharacterBody2D
 {
     [Export]
     public PlayerController Controller { get; private set; }
+
+    [Export]
+    public Garlic Garlic { get; private set; }
 
     [Export]
     public HealthComponent Health { get; private set; }
@@ -23,20 +25,11 @@ public partial class Player : CharacterBody2D
     public HurtboxComponent Hurtbox { get; private set; }
 
     [Export]
-    public Map Map { get; private set; }
+    public TextureProgressBar HealthBar { get; private set; }
 
     [Export]
     public PlayerData Data { get; private set; }
     public PlayerStateMachine StateMachine { get; init; } = new();
-
-    public Dictionary<Vector2, float> RotationMap { get; init; } =
-        new()
-        {
-            { Vector2.Up, 270 },
-            { Vector2.Right, 0 },
-            { Vector2.Down, 90 },
-            { Vector2.Left, 180 },
-        };
 
     public override void _Ready()
     {
@@ -63,5 +56,8 @@ public partial class Player : CharacterBody2D
     {
         Health.Initialize(Data.HealthData);
         Movement.Initialize(Data.MovementData);
+
+        HealthBar.MaxValue = Data.HealthData.MaxHealth;
+        HealthBar.Value = Data.HealthData.MaxHealth;
     }
 }

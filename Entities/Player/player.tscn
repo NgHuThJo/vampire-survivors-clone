@@ -9,11 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://jhbg5d3errnr" path="res://Common/Components/CollisionDetection/Hurtbox/hurtbox_component.tscn" id="6_iplt1"]
 [ext_resource type="PackedScene" uid="uid://bdwy5b0fyeqoh" path="res://Common/Components/Combat/Movement/movement_component.tscn" id="7_iplt1"]
 [ext_resource type="PackedScene" uid="uid://640n67d00vm7" path="res://Entities/Player/player_controller.tscn" id="7_owvpp"]
-[ext_resource type="PackedScene" uid="uid://c8ouknimlrhi0" path="res://Entities/Player/arrow.tscn" id="10_x1y6q"]
+[ext_resource type="PackedScene" uid="uid://bm3fo4p7oguvd" path="res://Entities/Weapons/garlic.tscn" id="10_x1y6q"]
+[ext_resource type="Texture2D" uid="uid://cinqcvt4uw7ya" path="res://Assets/Visual/healthbar-border.png" id="11_iplt1"]
+[ext_resource type="Texture2D" uid="uid://y4amjmperui7" path="res://Assets/Visual/healthbar.png" id="12_owvpp"]
 
 [sub_resource type="Resource" id="Resource_w71yf"]
 script = ExtResource("2_lub02")
-MaxHealth = 3.0
 metadata/_custom_type_script = "uid://jhelclesmlqh"
 
 [sub_resource type="Resource" id="Resource_ebkce"]
@@ -281,14 +282,16 @@ graph_offset = Vector2(-156.4086, 22.600815)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgnfr"]
 size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=1228520695 node_paths=PackedStringArray("Controller", "Health", "Movement", "Hurtbox")]
-position = Vector2(179, 113)
+[node name="Player" type="CharacterBody2D" unique_id=1228520695 node_paths=PackedStringArray("Controller", "Garlic", "Health", "Movement", "Hurtbox", "HealthBar")]
+position = Vector2(249, 166)
 collision_mask = 6
 script = ExtResource("1_3uyv8")
 Controller = NodePath("PlayerController")
+Garlic = NodePath("Garlic")
 Health = NodePath("HealthComponent")
 Movement = NodePath("MovementComponent")
 Hurtbox = NodePath("HurtboxComponent")
+HealthBar = NodePath("TextureProgressBar")
 Data = SubResource("Resource_xr8lj")
 metadata/_edit_group_ = true
 
@@ -322,19 +325,19 @@ _body = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=2041540694]
 shape = SubResource("RectangleShape2D_wgnfr")
 
-[node name="NextDirectionDetector" type="Node2D" parent="." unique_id=928726835]
+[node name="Garlic" parent="." unique_id=268618025 instance=ExtResource("10_x1y6q")]
 
-[node name="DirectionRays" type="Node2D" parent="NextDirectionDetector" unique_id=126440042]
-
-[node name="MovementRay1" type="RayCast2D" parent="NextDirectionDetector/DirectionRays" unique_id=425590887]
-position = Vector2(8.000002, 8)
-target_position = Vector2(24, 0)
-collision_mask = 2
-
-[node name="MovementRay2" type="RayCast2D" parent="NextDirectionDetector/DirectionRays" unique_id=1366296942]
-position = Vector2(8, -8)
-target_position = Vector2(24, 0)
-collision_mask = 2
-
-[node name="Arrow" parent="NextDirectionDetector" unique_id=743525806 instance=ExtResource("10_x1y6q")]
-position = Vector2(21.333334, 0)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1459083466]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_under = ExtResource("11_iplt1")
+texture_progress = ExtResource("12_owvpp")

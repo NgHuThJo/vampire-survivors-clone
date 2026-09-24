@@ -25,12 +25,16 @@ public partial class Enemy : CharacterBody2D, IDamageable
     public EnemyData Data { get; set; }
     public Player.Player Player { get; private set; }
 
-    private bool HasDied { get; set; } = false;
-
     public override void _Ready()
     {
         Movement.Initialize(Data.MovementData);
+        Health.Initialize(Data.HealthData);
+        HealthBar.MaxValue = Data.HealthData.MaxHealth;
+        HealthBar.Value = Data.HealthData.MaxHealth;
 
+        GD.Print("Max health: ", HealthBar.MaxValue, ", Current health: ", HealthBar.Value);
+
+        Health.HealthChanged += OnHealthChanged;
         Health.NoHealthLeft += OnNoHealthLeft;
     }
 
@@ -43,33 +47,13 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
     public override void _ExitTree()
     {
+        Health.HealthChanged -= OnHealthChanged;
         Health.NoHealthLeft -= OnNoHealthLeft;
     }
 
     public void Initialize(Player.Player player)
     {
         Player = player;
-        HealthBar.MaxValue = Data.HealthData.MaxHealth;
-        HealthBar.Value = Data.HealthData.MaxHealth;
-
-        GD.Print("Max health: ", HealthBar.MaxValue, ", Current health: ", HealthBar.Value);
-    }
-
-    public async void OnNoHealthLeft(NoHealthLeft noHealthLeft)
-    {
-        if (HasDied || noHealthLeft.Source is not Enemy)
-        {
-            return;
-        }
-
-        HasDied = true;
-
-        // EffectManager.Instance.Spawn<Explosion>(LoadedVfx.Explosion, GlobalPosition);
-        // AudioManager.Instance.PlaySfx(LoadedSfx.Explosion);
-
-        QueueFree();
-        // var context = new EnemyDied { Points = Data.Points };
-        // EventBus.Instance.EnemyDied.Invoke(context);
     }
 
     public void ReceiveDamage(IDamageContext context)
@@ -77,5 +61,23 @@ public partial class Enemy : CharacterBody2D, IDamageable
         var damage = DamageManager.Instance.ApplyDamage(context);
 
         Health.TakeDamage(damage);
+    }
+
+    public async void OnNoHealthLeft(NoHealthLeft noHealthLeft)
+    {
+        // EffectManager.Instance.Spawn<Explosion>(LoadedVfx.Explosion, GlobalPosition);
+        // AudioManager.Instance.PlaySfx(LoadedSfx.Explosion);
+
+        GD.Print("enemy died");
+
+        QueueFree();
+        // var context = new EnemyDied { Points = Data.Points };
+        // EventBus.Instance.EnemyDied.Invoke(context);
+    }
+
+    public async void OnHealthChanged(HealthChanged healthChanged)
+    {
+        GD.Print("enemy hurt, ", healthChanged.CurrentHealth);
+        HealthBar.Value = healthChanged.CurrentHealth;
     }
 }

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://brpiasfp5k8x8" path="res://Entities/Enemies/Enemy.cs" id="1_6rqwt"]
 [ext_resource type="PackedScene" uid="uid://bdwy5b0fyeqoh" path="res://Common/Components/Combat/Movement/movement_component.tscn" id="1_7o3vr"]
-[ext_resource type="Script" uid="uid://jhelclesmlqh" path="res://Resources/Combat/Health/HealthData.cs" id="2_jk8g3"]
 [ext_resource type="Script" uid="uid://dj8pqkdkxdul0" path="res://Resources/Combat/Attack/AttackData.cs" id="2_sawca"]
 [ext_resource type="PackedScene" uid="uid://b2spogtcacfgt" path="res://Common/Components/Combat/Health/health_component.tscn" id="3_4jf10"]
 [ext_resource type="PackedScene" uid="uid://jhbg5d3errnr" path="res://Common/Components/CollisionDetection/Hurtbox/hurtbox_component.tscn" id="3_6rqwt"]
+[ext_resource type="Resource" uid="uid://d2io2uv5rm6gu" path="res://Entities/Enemies/enemy_health.tres" id="3_ac7l1"]
 [ext_resource type="Resource" uid="uid://cclhecsoeewsh" path="res://Entities/Enemies/enemy_movement.tres" id="3_jk8g3"]
 [ext_resource type="Script" uid="uid://dki05byesg3ky" path="res://Entities/Enemies/EnemyData.cs" id="4_sawca"]
 [ext_resource type="PackedScene" uid="uid://dccxoapdar0n3" path="res://Common/Components/CollisionDetection/Hitbox/hitbox_component.tscn" id="7_ftopr"]
@@ -18,16 +18,11 @@ Damage = 1.0
 Cooldown = 2.0
 metadata/_custom_type_script = "uid://dj8pqkdkxdul0"
 
-[sub_resource type="Resource" id="Resource_ksien"]
-script = ExtResource("2_jk8g3")
-MaxHealth = 5.0
-metadata/_custom_type_script = "uid://jhelclesmlqh"
-
 [sub_resource type="Resource" id="Resource_uqk4q"]
 script = ExtResource("4_sawca")
 AttackData = SubResource("Resource_egqyd")
 MovementData = ExtResource("3_jk8g3")
-HealthData = SubResource("Resource_ksien")
+HealthData = ExtResource("3_ac7l1")
 metadata/_custom_type_script = "uid://dki05byesg3ky"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyppc"]
@@ -40,7 +35,7 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=660254415 node_paths=PackedStringArray("Movement", "Health", "Hurtbox", "HealthBar")]
-position = Vector2(305, 113)
+position = Vector2(282, 177)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6rqwt")
@@ -76,10 +71,16 @@ polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 shape = SubResource("RectangleShape2D_ebkce")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=638769729]
-anchors_preset = -1
-offset_left = -31.0
-offset_top = -43.0
-offset_right = 33.0
-offset_bottom = -27.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
 texture_under = ExtResource("10_ac7l1")
 texture_progress = ExtResource("11_uc670")

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_appc6")
-Damage = 1.0
-Radius = 30.0
+Damage = 5
+Radius = 200.0
 Cooldown = 1.0
 metadata/_custom_type_script = "uid://gdj87tttkk63"

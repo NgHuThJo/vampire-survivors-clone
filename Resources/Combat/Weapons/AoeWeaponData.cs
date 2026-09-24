@@ -6,7 +6,7 @@ namespace Game.Resources.Weapons;
 public partial class AoeWeaponData : Resource
 {
     [Export]
-    public float Damage { get; private set; }
+    public int Damage { get; private set; }
 
     [Export]
     public float Radius { get; private set; }

@@ -13,17 +13,7 @@ public partial class HealthComponent : Node
     public event Action<HealthChanged> HealthChanged;
     public event Action<NoHealthLeft> NoHealthLeft;
     public HealthData Data { get; private set; }
-    public float CurrentHealth { get; private set; }
-
-    public override void _Ready()
-    {
-        Hurtbox.HitReceived += OnHitReceived;
-    }
-
-    public override void _ExitTree()
-    {
-        Hurtbox.HitReceived -= OnHitReceived;
-    }
+    public int CurrentHealth { get; private set; }
 
     public void Initialize(HealthData data)
     {
@@ -31,30 +21,27 @@ public partial class HealthComponent : Node
         CurrentHealth = data.MaxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         CurrentHealth -= damage;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, Data.MaxHealth);
-    }
 
-    public bool IsDead()
-    {
-        return CurrentHealth <= 0;
-    }
+        var healthChanged = new HealthChanged() { CurrentHealth = CurrentHealth };
 
-    public void OnHitReceived(HitReceived context)
-    {
-        TakeDamage(context.Hitter.AttackData.Damage);
+        HealthChanged?.Invoke(healthChanged);
 
-        var healthChangedContext = new HealthChanged() { CurrentHealth = CurrentHealth };
-
-        HealthChanged?.Invoke(healthChangedContext);
-
-        if (IsDead())
+        if (IsDead)
         {
-            var noHealthLeftContext = new NoHealthLeft { Source = GetParent() };
+            var noHealthLeft = new NoHealthLeft();
 
-            NoHealthLeft?.Invoke(noHealthLeftContext);
+            NoHealthLeft?.Invoke(noHealthLeft);
         }
     }
+
+    public bool IsDead => CurrentHealth <= 0;
 }

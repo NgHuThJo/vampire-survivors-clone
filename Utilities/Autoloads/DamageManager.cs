@@ -14,7 +14,7 @@ public partial class DamageManager : Node
         Instance = this;
     }
 
-    public float ApplyDamage(IDamageContext context)
+    public int ApplyDamage(IDamageContext context)
     {
         if (context is AoeWeaponContext aoeWeapon)
         {

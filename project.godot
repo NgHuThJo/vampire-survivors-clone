@@ -23,6 +23,7 @@ InputManager="*uid://wymsuk1jjar1"
 ConfigManager="*uid://j8q017p80p8t"
 UiManager="*uid://bw8rhyywt50jt"
 AudioManager="*uid://dtpgme8fnw3jy"
+DamageManager="*uid://bso8w45siwwqb"
 
 [display]
 
@@ -68,6 +69,7 @@ escape={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Obstacle"
+2d_physics/layer_4="Weapon"
 
 [physics]
 

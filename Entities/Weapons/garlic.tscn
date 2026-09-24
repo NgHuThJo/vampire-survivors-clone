@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bm3fo4p7oguvd"]
+
+[ext_resource type="Script" uid="uid://8xrikvs5lm1a" path="res://Entities/Weapons/Garlic.cs" id="1_3xck1"]
+[ext_resource type="Resource" uid="uid://dwn5dfoferemg" path="res://Entities/Weapons/garlic_weapon_data.tres" id="2_hgdld"]
+[ext_resource type="PackedScene" uid="uid://dccxoapdar0n3" path="res://Common/Components/CollisionDetection/Hitbox/hitbox_component.tscn" id="2_qs8h0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyppc"]
+
+[node name="Garlic" type="Node2D" unique_id=268618025 node_paths=PackedStringArray("CooldownTimer", "Hitbox")]
+script = ExtResource("1_3xck1")
+WeaponData = ExtResource("2_hgdld")
+CooldownTimer = NodePath("Cooldown")
+Hitbox = NodePath("HitboxComponent")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1750104184]
+autostart = true
+
+[node name="HitboxComponent" parent="." unique_id=1065271935 node_paths=PackedStringArray("CollisionShape") instance=ExtResource("2_qs8h0")]
+collision_layer = 8
+collision_mask = 2
+CollisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1583018937]
+shape = SubResource("CircleShape2D_vyppc")
