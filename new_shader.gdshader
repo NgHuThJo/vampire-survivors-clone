@@ -1,11 +1,23 @@
 shader_type canvas_item;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
+vec2 RotateVertex(vec2 vertex, float angle) {
+	float newX = vertex.x * cos(angle) - vertex.y * sin(angle);
+	float newY = vertex.x * sin(angle) + vertex.y * cos(angle);
+
+	return vec2(newX, newY);
 }
 
-void fragment() {
-	COLOR = vec4(0.4, 0.6, 0.9, 1.0);
+void vertex()
+{
+	float wind = sin(TIME * 2.0);
+	float amplitude = 50.0;
+	VERTEX += wind * amplitude;
+	VERTEX *= 2.0;
+	VERTEX = RotateVertex(VERTEX, TIME * PI);
+}
+
+void fragment()
+{
 }
 
 //void light() {

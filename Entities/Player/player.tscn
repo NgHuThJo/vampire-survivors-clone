@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://jhelclesmlqh" path="res://Resources/Combat/Health/HealthData.cs" id="2_lub02"]
 [ext_resource type="Script" uid="uid://cvs6jj0ttra88" path="res://Resources/Combat/Movement/MovementData.cs" id="3_x1y6q"]
 [ext_resource type="Script" uid="uid://b3pxvwxg0u4mf" path="res://Entities/Player/PlayerData.cs" id="4_x1y6q"]
+[ext_resource type="Shader" uid="uid://bbuq5wl7kvjpk" path="res://new_shader.gdshader" id="5_owvpp"]
 [ext_resource type="Texture2D" uid="uid://dfj36a6rdjejn" path="res://Entities/Player/player.png" id="5_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://b2spogtcacfgt" path="res://Common/Components/Combat/Health/health_component.tscn" id="6_ap3xn"]
 [ext_resource type="PackedScene" uid="uid://jhbg5d3errnr" path="res://Common/Components/CollisionDetection/Hurtbox/hurtbox_component.tscn" id="6_iplt1"]
@@ -26,6 +27,9 @@ metadata/_custom_type_script = "uid://cvs6jj0ttra88"
 script = ExtResource("4_x1y6q")
 HealthData = SubResource("Resource_w71yf")
 MovementData = SubResource("Resource_ebkce")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w71yf"]
+shader = ExtResource("5_owvpp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7bsh"]
 size = Vector2(16, 16)
@@ -297,6 +301,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1900190858]
 texture_filter = 1
+material = SubResource("ShaderMaterial_w71yf")
 texture = ExtResource("5_x1y6q")
 offset = Vector2(-1, 0)
 hframes = 4
