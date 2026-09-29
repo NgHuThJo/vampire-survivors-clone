@@ -16,7 +16,7 @@ void fragment() {
 	float maskInner = 1.0 - smoothstep(rimWidth - softness, rimWidth, distanceFromCenter);
 	float maskRim = maskOuter - maskInner;
 	vec3 finalColor = maskRim * colorRim + maskInner * colorInner;
-	// float portal = 1.0 - smoothstep(radius - softness, radius, distanceFromCenter);
+	float portal = 1.0 - smoothstep(radius - softness, radius, distanceFromCenter);
 
 	COLOR = vec4(finalColor, maskOuter);
 }
