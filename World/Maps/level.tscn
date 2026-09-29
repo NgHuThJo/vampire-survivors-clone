@@ -17,7 +17,3 @@ position = Vector2(119, 138)
 
 [node name="Spawner" parent="." unique_id=1757535941 node_paths=PackedStringArray("Player") instance=ExtResource("4_egqyd")]
 Player = NodePath("../Player")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1251183228]
-position = Vector2(320, 180)
-zoom = Vector2(2, 2)

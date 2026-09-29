@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dvirwh0k4mh34"]
+
+[ext_resource type="Shader" uid="uid://c5lal1sajkwcd" path="res://Common/Shaders/radial_pulse.gdshader" id="1_c3teg"]
+[ext_resource type="Texture2D" uid="uid://d7km5d7kadl2" path="res://icon.svg" id="2_820nf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w71yf"]
+shader = ExtResource("1_c3teg")
+shader_parameter/radius = 0.4
+shader_parameter/rimWidth = 0.30000001192093
+shader_parameter/softness = 0.01
+shader_parameter/colorRim = Color(0.02, 0.04, 0.51, 1)
+shader_parameter/colorInner = Color(0.23, 0.35, 0.65, 1)
+
+[node name="Placeholder" type="Node2D" unique_id=728836222]
+scale = Vector2(1.005618, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1052280661]
+material = SubResource("ShaderMaterial_w71yf")
+texture = ExtResource("2_820nf")
