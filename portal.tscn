@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dvirwh0k4mh34"]
+
+[ext_resource type="Shader" uid="uid://c5lal1sajkwcd" path="res://Common/Shaders/portal.gdshader" id="1_c3teg"]
+[ext_resource type="Script" uid="uid://buh6piw7uwxn2" path="res://Portal.cs" id="1_ef3v5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w71yf"]
+shader = ExtResource("1_c3teg")
+shader_parameter/radius = 0.5
+shader_parameter/rimWidth = 0.2
+shader_parameter/softness = 0.01
+shader_parameter/breathingStrength = 0.02000000095
+shader_parameter/displacementStrength = 0.150000007125
+shader_parameter/noiseDirection = Vector2(1, 1)
+shader_parameter/noiseSpeed = 0.1
+shader_parameter/innerGradientStart = 0.202000009595
+shader_parameter/innerGradientWidth = 0.3870000183825
+shader_parameter/innerStartColor = Color(0, 0, 0, 1)
+shader_parameter/innerEndColor = Color(0.15, 0.21, 0.53, 1)
+shader_parameter/rimStartColor = Color(0.38, 0.63, 1, 1)
+shader_parameter/rimEndColor = Color(0.69, 0.88, 0.99, 1)
+shader_parameter/rimGradientWidth = 0.07
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4p2r2"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rmiwf"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_4p2r2")
+seamless = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyppc"]
+radius = 91.4915
+
+[node name="Portal" type="Node2D" unique_id=728836222 node_paths=PackedStringArray("Area", "Sprite")]
+scale = Vector2(1.005618, 1)
+script = ExtResource("1_ef3v5")
+Area = NodePath("Area2D")
+Sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1052280661]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_w71yf")
+position = Vector2(0, -1)
+texture = SubResource("NoiseTexture2D_rmiwf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=392186187]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=518515237]
+shape = SubResource("CircleShape2D_vyppc")
