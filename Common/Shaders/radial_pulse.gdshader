@@ -12,7 +12,7 @@ void fragment() {
     float distanceFromCenter = distance(UV, center);
     float outerMask = step(radius, distanceFromCenter);
 
-    vec3 finalColor = outerMask + vec3(1.0, 0.5, 0.1);
+    vec3 finalColor = outerMask + vec3(1.0, 0.3, 0.1);
 
     COLOR = vec4(finalColor, oscillation);
 } 
