@@ -7,12 +7,16 @@ const vec2 center = vec2(0.5, 0.5);
 const float pulseMidline = 0.5;
 
 void fragment() {
+    vec2 uv = UV;
+    uv = -uv;
 
-    float oscillation = pulseStrength * sin(TIME * pulseSpeed) + pulseMidline;
-    float distanceFromCenter = distance(UV, center);
-    float outerMask = step(radius, distanceFromCenter);
+    vec4 texel = texture(TEXTURE, uv);
 
-    vec3 finalColor = outerMask + vec3(1.0, 0.3, 0.1);
+    // float oscillation = pulseStrength * sin(TIME * pulseSpeed) + pulseMidline;
+    // float distanceFromCenter = distance(UV, center);
+    // float outerMask = step(radius, distanceFromCenter);
 
-    COLOR = vec4(finalColor, oscillation);
+    // vec3 finalColor = outerMask + vec3(1.0, 0.3, 0.1);
+
+    COLOR = vec4(texel);
 } 
