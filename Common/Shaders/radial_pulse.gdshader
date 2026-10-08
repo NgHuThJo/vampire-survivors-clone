@@ -11,25 +11,21 @@ vec2 RotateVertex(vec2 vertex, float angle) {
     return rotationMatrix * vertex;
 }
 
-vec2 MoveInCircle(float angle, float r, vec2 c) {
-    vec2 offset = vec2(cos(angle), sin(angle)) * r;
-
-    return c + offset;
+vec2 MoveInCircle(float angle, float r) {
+    return r * vec2(cos(angle), sin(angle));
 }
 
 void vertex() { 
     // VERTEX = RotateVertex(VERTEX, 10.0 * TIME);
-
-    float angle = 10.0 * TIME;
-    float r = 100.0;
-    vec2 c = vec2(0.0, 0.0);
-    VERTEX = MoveInCircle(angle, r, c);
+    float angle = TIME * 10.0;
+    float r = sin(TIME) * 300.0 + 300.0;
+    VERTEX += MoveInCircle(angle, r);
 }
 
 void fragment() {
     vec2 uv = UV;
 
-    uv = vec2(1.0, 1.0) - uv;
+    // uv = vec2(1.0, 1.0) - uv;
     vec4 texel = texture(TEXTURE, uv);
 
     // float oscillation = pulseStrength * sin(TIME * pulseSpeed) + pulseMidline;
