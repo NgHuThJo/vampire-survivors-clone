@@ -18,7 +18,7 @@ vec2 MoveInCircle(float angle, float r) {
 void vertex() { 
     // VERTEX = RotateVertex(VERTEX, 10.0 * TIME);
     float angle = TIME * 5.0;
-    float r = sin(TIME) * 20.0 + 40.0;
+    float r = sin(TIME) * 10.0 + 20.0;
     VERTEX += MoveInCircle(angle, r);
 }
 
